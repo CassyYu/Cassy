@@ -44,7 +44,7 @@ export default function SingleSnake() {
           else if (left + Edge === snake[1].left) dir = LEFT;
           else dir = RIGHT;
           if (key === DOWN) {
-            if (top === MapHeight) reachBorder = true;
+            if (top === MapHeight - Edge) reachBorder = true;
             if (dir === UP) {
               setKey(UP);
               top = snake[0].top - Edge;
@@ -56,7 +56,7 @@ export default function SingleSnake() {
               top = snake[0].top + Edge;
             } else top = snake[0].top - Edge;
           } else if (key === RIGHT) {
-            if (left === MapWidth) reachBorder = true;
+            if (left === MapWidth - Edge) reachBorder = true;
             if (dir === LEFT) {
               setKey(LEFT);
               left = snake[0].left - Edge;
@@ -89,11 +89,19 @@ export default function SingleSnake() {
     })
   }, [])
 
-  const changeFood = () => {
+  const changeFood: any = () => {
     const newLeft = Math.ceil(Math.random() * (MapWidth - Edge) / 10) * 10;
     const newTop = Math.ceil(Math.random() * (MapHeight - Edge) / 10) * 10;
     setEated(true);
-    setFood({ left: newLeft, top: newTop });
+    let able = true;
+    for (let i = 0; i < snake.length; i++) {
+      if (snake[i].left === newLeft && snake[i].top === newTop) {
+        able = false;
+        break;
+      }
+    }
+    if (able) return { left: newLeft, top: newTop };
+    else return changeFood();
   }
 
   const reachSelf = (snake: any) => {
@@ -113,7 +121,7 @@ export default function SingleSnake() {
   }
 
   const renderFood = () => {
-    if (snake[0].left === food.left && snake[0].top === food.top) changeFood();
+    if (snake[0].left === food.left && snake[0].top === food.top) setFood(changeFood());
     return (
       <div className={styles.food} style={{ left: food.left + 'px', top: food.top + 'px' }}></div>
     )
