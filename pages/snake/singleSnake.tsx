@@ -5,10 +5,6 @@ import { useState, useEffect } from 'react'
 const initSnake = [
   {
     left: 0,
-    top: 30
-  },
-  {
-    left: 0,
     top: 20
   },
   {
@@ -27,7 +23,7 @@ export default function SingleSnake() {
   const MapHeight = 400, MapWidth = 600;
   const Edge = 10;
 
-  const [dir, setDir] = useState<String>(DOWN);
+  const [key, setKey] = useState<String>(DOWN);
   const [snake, setSnake] = useState<any>(initSnake);
   const [food, setFood] = useState<any>({ left: 40, top: 110 });
   const [eated, setEated] = useState<boolean>(false);
@@ -38,22 +34,39 @@ export default function SingleSnake() {
 
   useEffect(() => {
     setTimeout(() => {
-      let newSnake: any = [];
+      let newSnake = [], reachBorder = false;
       snake.forEach((e: any, idx: number) => {
         let top = e.top, left = e.left;
         if (idx === 0) {
-          if (dir === DOWN) {
-            if (top !== snake[1].top - Edge) top = snake[0].top + Edge;
-            else top = snake[0].top - Edge;
-          } else if (dir === UP) {
-            if (top !== snake[1].top + 10) top = snake[0].top - Edge;
-            else top = snake[0].top + Edge;
-          } else if (dir === RIGHT) {
-            if (left !== snake[1].left - Edge) left = snake[0].left + Edge;
-            else left = snake[0].left - Edge;
-          } else if (dir === LEFT) {
-            if (left !== snake[1].left + Edge) left = snake[0].left - Edge;
-            else left = snake[0].left + Edge;
+          let dir;
+          if (top + Edge === snake[1].top) dir = UP;
+          else if (top - Edge === snake[1].top) dir = DOWN;
+          else if (left + Edge === snake[1].left) dir = LEFT;
+          else dir = RIGHT;
+          if (key === DOWN) {
+            if (top === MapHeight) reachBorder = true;
+            if (dir === UP) {
+              setKey(UP);
+              top = snake[0].top - Edge;
+            } else top = snake[0].top + Edge;
+          } else if (key === UP) {
+            if (top === 0) reachBorder = true;
+            if (dir === DOWN) {
+              setKey(DOWN);
+              top = snake[0].top + Edge;
+            } else top = snake[0].top - Edge;
+          } else if (key === RIGHT) {
+            if (left === MapWidth) reachBorder = true;
+            if (dir === LEFT) {
+              setKey(LEFT);
+              left = snake[0].left - Edge;
+            } else left = snake[0].left + Edge;
+          } else if (key === LEFT) {
+            if (left === 0) reachBorder = true;
+            if (dir === RIGHT) {
+              setKey(RIGHT);
+              left = snake[0].left + Edge;
+            } else left = snake[0].left - Edge;
           }
           newSnake.push({ left: left, top: top });
         } else {
@@ -66,16 +79,13 @@ export default function SingleSnake() {
         newSnake.push({ left: snake[snake.length - 1].left, top: snake[snake.length - 1].top });
         setEated(false);
       }
-      if (!reachBorder() && !reachSelf(newSnake)) setSnake(newSnake);
+      if (!reachBorder && !reachSelf(newSnake)) setSnake(newSnake);
     }, TIME);
   }, [snake])
 
   useEffect(() => {
     window.addEventListener("keydown", (e) => {
-      if (e.key === DOWN) setDir(DOWN);
-      if (e.key === UP) setDir(UP);
-      if (e.key === LEFT) setDir(LEFT);
-      if (e.key === RIGHT) setDir(RIGHT);
+      setKey(e.key);
     })
   }, [])
 
@@ -84,14 +94,6 @@ export default function SingleSnake() {
     const newTop = Math.ceil(Math.random() * (MapHeight - Edge) / 10) * 10;
     setEated(true);
     setFood({ left: newLeft, top: newTop });
-  }
-
-  const reachBorder = () => {
-    if (dir === DOWN && snake[0].top === MapHeight - Edge) return true;
-    else if (dir === UP && snake[0].top === 0) return true;
-    else if (dir === RIGHT && snake[0].left === MapWidth - Edge) return true;
-    else if (dir === LEFT && snake[0].left === 0) return true;
-    return false;
   }
 
   const reachSelf = (snake: any) => {
