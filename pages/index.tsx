@@ -1,9 +1,8 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/home.module.css'
 import { Table } from 'antd'
 import { columns, data } from '../data/table.js'
-import 'antd/dist/antd.css'
 
 const Home: NextPage = () => {
   return (

@@ -1,4 +1,4 @@
-import styles from '../../styles/Snake.module.css'
+import styles from '../../styles/snake.module.css'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 

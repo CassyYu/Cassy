@@ -1,4 +1,4 @@
-import SingleSnake from './singleSnake'
+import SingleSnake from "./SingleSnake"
 
 export default function SnakeApp() {
 
