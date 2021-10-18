@@ -1,0 +1,8 @@
+.breadcrumb {
+	width: 100vw;
+	padding-left: 20px;
+	top: 0;
+	position: fixed;
+	z-index: 99;
+	background-color: rgba(200, 180, 180, 0.8);
+}

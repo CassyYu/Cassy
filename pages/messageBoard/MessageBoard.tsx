@@ -28,7 +28,7 @@ export default function MessageBoard() {
     {
       author: "Han Solo",
       avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-      content: "We supply a series of design principles, practical patterns and high quality designresources (Sketch and Axure), to help people create their product prototypes beautifullyand efficiently.",
+      content: "We supply a series of design principles, practical patterns and high quality designresources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
       time: moment(),
       likes: 0,
       dislikes: 0,
@@ -36,7 +36,7 @@ export default function MessageBoard() {
     {
       author: "Han Solo",
       avatar: "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-      content: "We supply a series of design principles, practical patterns and high quality designresources (Sketch and Axure), to help people create their product prototypes beautifullyand efficiently.",
+      content: "We supply a series of design principles, practical patterns and high quality designresources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.",
       time: moment(),
       likes: 0,
       dislikes: 0,
@@ -83,7 +83,7 @@ export default function MessageBoard() {
               actions={actions}
               author={<a>{item.author}</a>}
               avatar={
-                <Avatar src={item.avatar} alt="avatar" />
+                <Avatar src={item.avatar} alt="avatar" className={styles.avatar} />
               }
               content={<p>{item.content}</p>}
               datetime={

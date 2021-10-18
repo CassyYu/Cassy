@@ -45,5 +45,11 @@ export const data = [
     name: { href: 'messageBoard', text: '💬 留言板' },
     tags: ['TS', '组件'],
     status: '✅ 完成基础功能'
+  },
+  {
+    key: '3',
+    name: {href: 'posts/2021/10', text: '📖 文章'},
+    tags: ['markdown', '文章'],
+    status: '🛠 正在开发中...'
   }
 ];
