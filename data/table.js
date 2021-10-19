@@ -48,7 +48,7 @@ export const data = [
   },
   {
     key: '3',
-    name: {href: 'posts/2021/10', text: '📖 文章'},
+    name: {href: 'posts', text: '📖 博客'},
     tags: ['markdown', '文章'],
     status: '🛠 正在开发中...'
   }

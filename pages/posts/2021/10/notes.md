@@ -1,4 +1,4 @@
-## 2021年10月18日学习笔记
+## 2021年10月18日
 
 ### mac 命令行如何配置 code 快捷键
 
@@ -7,7 +7,7 @@
        这样就能很方便地在命令行使用 'code .' 打开文件夹了
 ### Mock.js
 
-资料：https://github.com/nuysoft/Mock/wiki；http://mockjs.com/examples.html
+资料：https://github.com/nuysoft/Mock/wiki ；http://mockjs.com/examples.html
 
 #### 作用
 
@@ -280,4 +280,27 @@ Error fetching https://gems.ruby-china.com:
    https://gems.ruby-china.com
    ```
 
-   
+
+## 2021年10月19日
+
+### 个人网站的开发规划
+
+支持网页端和移动端
+
+- 主页：个人博客
+  - 按照标签分类等（Hux Blog）
+  - Markdown 在线编辑器（Typora）
+
+- 游戏板块
+  - 贪吃蛇
+
+- 组件库板块
+  - 留言板
+
+- 效率工具板块
+  - 日程规划（Goodnotes 可导出 pdf A4）
+  - 个人笔记（Notion）
+
+### CSS 实现毛玻璃效果
+
+资料：https://www.jianshu.com/p/8a3b828dbbfb ；https://www.php.cn/css-tutorial-480529.html
