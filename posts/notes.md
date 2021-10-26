@@ -1,3 +1,9 @@
+---
+title: '2021年10月18日学习笔记'
+date: '2021-10-18'
+tags: ['学习笔记']
+---
+
 ## 2021年10月18日
 
 ### mac 命令行如何配置 code 快捷键
@@ -27,19 +33,19 @@ npm install mockjs
 yarn add mockjs
 ```
 
-#### 引入
-
-通过 nodejs 引入（CommonJS）
+#### 使用
 
 ```js
 var Mock = require('mockjs')
 ```
 
-或者通过 import 引入（ESModule）
+或者
 
 ```js
 import Mock from 'mockjs'
 ```
+
+
 
 #### 语法规则
 

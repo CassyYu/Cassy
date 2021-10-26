@@ -1,6 +1,7 @@
-import styles from '../../styles/snake.module.css'
+import styles from '../styles/snake.module.css'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
+import Layout from '../components/layout';
 
 const initSnake = [
   {
@@ -128,23 +129,27 @@ export default function SingleSnake() {
   }
 
   return (
-    <>
-      <div className={styles.container}>
-        <div className={styles.title}>Snake Demo</div>
-        <div className={styles.mapContainer}>
-          <div className={styles.map}>
-            <div className={styles.snakeContainer}>
-              {renderSnake()}
-            </div>
-            {renderFood()}
+    <Layout siteTitle="Snake Demo">
+      <div className="w-screen my-6">
+        <div className="lg:flex lg:flex-row justify-evenly my-8">
+          <div>
+            <Link href="/"><a className="mx-2 text-gray-500 hover:underline hover:text-gray-800">Back</a></Link>
+            <div className="my-8 text-7xl font-bold transform">Snake Demo</div>
           </div>
-          <div className={styles.infoContainer}>
-            <span>Score: {score}</span>
-            <span>Level: {level}</span>
+          <div className={styles.mapContainer}>
+            <div className={styles.map}>
+              <div className={styles.snakeContainer}>
+                {renderSnake()}
+              </div>
+              {renderFood()}
+            </div>
+            <div className={styles.infoContainer}>
+              <span>Score: {score}</span>
+              <span>Level: {level}</span>
+            </div>
           </div>
         </div>
-        <Link href="/"><a>Back To Homepage</a></Link>
       </div>
-    </>
+    </Layout>
   )
 }
