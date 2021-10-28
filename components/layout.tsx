@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { SearchIcon } from '@heroicons/react/outline'
-import { Github, Alipay, Wechat } from '../lib/svgs'
+import { Github, Alipay, Wechat, Copyright } from '../lib/svgs'
 
+const date = new Date();
+const year = date.getFullYear();
 const nav = [
 	{
 		name: 'home',
@@ -18,9 +19,9 @@ const nav = [
 	}
 ];
 
-export default function Layout({ children, siteTitle }: any) {
+export default function Layout({ children, siteTitle, className }: any) {
 	return (
-		<div className="text-gray-700 overflow-hidden">
+		<div className={"text-gray-700 overflow-hidden " + className}>
 			<Head>
 				<link rel="icon" href="/favicon.svg" />
 				<title>{siteTitle}</title>
@@ -39,12 +40,9 @@ export default function Layout({ children, siteTitle }: any) {
 							<a className="cursor-pointer"><Link href={href}>{name.toUpperCase()}</Link></a>
 						</div>
 					))}
-					<div className="mr-4 sm:mr-8">
-						<Link href="/snake"><a><SearchIcon className="h-5 w-5 hover:text-gray-800" /></a></Link>
-					</div>
 				</div>
 			</header>
-			<div className="flex flex-col mt-12 font-mono mx-2">
+			<div className="flex flex-col mt-12 font-mono">
 				{children}
 			</div>
 			<footer className="flex flex-col items-center font-mono my-8">
@@ -53,7 +51,11 @@ export default function Layout({ children, siteTitle }: any) {
 					<Alipay />
 					<Wechat />
 				</div>
-				<div>Copyright by ZhangYu.</div>
+				<div className="flex items-center">
+					Copyright
+					<Copyright width="20" height="20" className=" inline mx-2" />
+					ZhangYu {year}
+				</div>
 			</footer>
 		</div>
 	)
