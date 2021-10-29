@@ -22,10 +22,9 @@ export default function Home({ allPostsData }: any) {
     else setPage(page + num);
   }
 
-  const handleKeyDown = (keyCode: number) => {
-    const val = input.current.value;
+  const handleKeyDown = (val: string) => {
     const searchResults = val ? allPostsData.filter((e: any) => {
-      if (e.title.indexOf(val) >= 0 || e.date.indexOf(val) >= 0) return true;
+      if (e.title.indexOf(val) >= 0) return true;
       return false;
     }) : allPostsData;
     setSearchResults(searchResults);
@@ -118,26 +117,23 @@ export default function Home({ allPostsData }: any) {
   }
 
   const renderSearchResults = () => {
-    return (
-      <ul className="mx-6 px-4 z-50 bg-gray-50 absolute">
+    return searchResults.length ? (
+      <ul className={"mx-6 px-0 z-40 bg-gray-50"}>
         {searchResults.map((post: any) =>
-          <li key={post.id} className="leading-5 mt-4 pb-2 text-gray-400 hover:text-gray-900">
+          <li key={post.id} className="mt-2 pb-2 text-gray-400 hover:text-gray-900">
             <a className=" text-md">
               <Link href={`/posts/${post.id}`}>{post.title}</Link>
             </a>
             <br />
-            <small>
-              <Date dateString={post.date} />
-            </small>
           </li>
         )}
       </ul>
-    )
+    ) : <></>
   }
 
   return (
     <Layout siteTitle="CassyYu" className="relative">
-      <div className={"w-screen absolute top-0 left-0 bg-black opacity-20 duration-500 ease-in-out" + (focus ? " h-full" : " h-0")}></div>
+      <div className={"w-screen absolute z-30 top-0 left-0 bg-black opacity-20 duration-500 ease-in-out" + (focus ? " h-full" : " h-0")}></div>
       <div className="lg:flex lg:flex-row flex flex-col justify-evenly mt-6 w-screen">
         <div className="lg:ml-24 max-w-md sm:ml-20 mx-4 sm:mt-4">
           <div className="text-8xl sm:text-9xl font-bold -mx-1">BLOG.</div>
@@ -149,31 +145,39 @@ export default function Home({ allPostsData }: any) {
           </div>
         </div>
         <div className="mx-4 sm:mx-20 flex-grow">
-          <div className="mt-6 flex items-center relative z-40">
-            <Search className="absolute left-3 h-5 w-5" />
-            <input ref={input} onKeyDown={(el: any) => { handleKeyDown(el.keyCode) }} onFocus={() => { setFocus(true); }} onBlur={() => { setFocus(false); setSearchResults([]) }} className="placeholder-gray-300 bg-gray-50 py-1 px-10 flex-1 rounded-full shadow-md focus:shadow-none outline-none" />
-            <button className="absolute right-3"><Close className="h-5 w-5 inline" /></button>
-          </div>
-          {renderSearchResults()}
-          {renderQueryTags()}
-          <div className="hidden">
-            <Nodata className="h-72 w-72 m-auto" />
-            <div style={{ color: '#999' }} className="text-2xl text-center">No Data</div>
-          </div>
-          <ul>
-            {renderPostsData()}
-          </ul>
-          <div className="flex w-full text-lg text-gray-500 mt-12 whitespace-nowrap">
-            <div className="flex-grow">
-              <button className={"-ml-4 " + (page === 1 ? "unable-btn" : "able-btn")} onClick={() => { handlePage(-1) }}><LeftArrow width="50" height="50" />PRE</button>
-            </div>
+          <div className="mt-6 mr-4 flex justify-items-start absolute z-40 bg-gray-50 rounded-2xl shadow-md">
+            <Search className="absolute left-3 top-1.5 h-5 w-5" />
             <div>
-              <button className={"-mr-4 " + (page === lastPage ? "unable-btn" : "able-btn")} onClick={() => { handlePage(1) }}>NEXT<RightArrow width="50" height="50" /></button>
+              <input ref={input}
+                onChange={(el: any) => { handleKeyDown(el.target.value) }}
+                className={"py-1 pr-4 pl-10 outline-none bg-transparent w-full" + (searchResults.length ? " border-gray-400 border-b" : "")}
+                onFocus={() => { setFocus(true); }}
+                onBlur={() => { setTimeout(() => { setFocus(false); setSearchResults([]); input.current.value = ""; }, 100); }}
+              />
+              {renderSearchResults()}
+            </div>
+          </div>
+          <div className="pt-14">
+            {renderQueryTags()}
+            <div className="hidden">
+              <Nodata className="h-72 w-72 m-auto" />
+              <div style={{ color: '#999' }} className="text-2xl text-center">No Data</div>
+            </div>
+            <ul>
+              {renderPostsData()}
+            </ul>
+            <div className="flex w-full text-lg text-gray-500 mt-12 whitespace-nowrap">
+              <div className="flex-grow">
+                <button className={"-ml-4 " + (page === 1 ? "unable-btn" : "able-btn")} onClick={() => { handlePage(-1) }}><LeftArrow width="50" height="50" />PRE</button>
+              </div>
+              <div>
+                <button className={"-mr-4 " + (page === lastPage ? "unable-btn" : "able-btn")} onClick={() => { handlePage(1) }}>NEXT<RightArrow width="50" height="50" /></button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </Layout>
+    </Layout >
   )
 }
 
