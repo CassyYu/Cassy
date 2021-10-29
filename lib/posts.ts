@@ -21,11 +21,10 @@ export function getSortedPostsData() {
 		}
 	})
 	return allPostsData.sort((a: any, b: any) => {
-		if (!a.top && b.top || a.date < b.date) {
-			return 1
-		} else {
-			return -1
-		}
+		if (!a.top && b.top) return 1;
+		else if (!b.top && a.top) return -1;
+		else if (a.date < b.date) return 1;
+		else return -1;
 	})
 }
 
