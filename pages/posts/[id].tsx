@@ -4,8 +4,21 @@ import Date from '../../components/date'
 import Link from 'next/link'
 import styles from '../../styles/markdown.module.scss'
 import { LeftArrow } from '../../lib/svgs'
+import { useEffect } from 'react'
 
 export default function Post({ postData }: any) {
+	useEffect(() => {
+		const h1: any = document.getElementsByTagName("h1")
+		const h2: any = document.getElementsByTagName("h2")
+		const h3: any = document.getElementsByTagName("h3")
+		const h4: any = document.getElementsByTagName("h4")
+		const h5: any = document.getElementsByTagName("h5")
+		for (let el of h1) el.setAttribute("id", el.innerHTML)
+		for (let el of h2) el.setAttribute("id", el.innerHTML)
+		for (let el of h3) el.setAttribute("id", el.innerHTML)
+		for (let el of h4) el.setAttribute("id", el.innerHTML)
+		for (let el of h5) el.setAttribute("id", el.innerHTML)
+	}, [])
 	return (
 		<Layout siteTitle={postData.title}>
 			<div className="px-4 my-6 lg:mx-60 overflow-scroll">

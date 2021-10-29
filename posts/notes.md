@@ -3,6 +3,7 @@ title: '2021年10月18日学习笔记'
 date: '2021-10-18'
 tags: ['学习笔记']
 ---
+###### Table of Content
 
 ## 2021年10月18日
 
@@ -56,6 +57,7 @@ import Mock from 'mockjs'
 String
 
 `'name|min-max': string` 生成 [min, max] 个 string
+
 `'name|count': string` 生成 count 个 string
 
 ```js
@@ -66,7 +68,9 @@ String
 Number（number用来确定类型）
 
 `'name|+1': number` 属性值自动加 1
+
 `'name|min-max': number` 生成 [min,max] 的随机数
+
 `'name|min-max.dmin-dmax': number` 生成整数范围为 [min,max] 小数位数为 [dmin,dmax] 的随机小数
 
 ```js
