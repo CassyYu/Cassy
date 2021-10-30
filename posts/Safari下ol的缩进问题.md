@@ -6,8 +6,6 @@ tags: ['开发']
 
 # Safari浏览器下ol的缩进问题
 
-###### Table of Content
-
 注意到在 Safari 浏览器中，ol 会溢出，使用 margin 控制边距时会遮挡掉序号的一部分，使用 padding 控制边距时则会出现以下现象：
 
 ![PNG](/images/20211026_1.png)

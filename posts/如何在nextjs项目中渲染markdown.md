@@ -6,6 +6,4 @@ tags: ['技术文章']
 
 # 如何在nextjs项目中渲染markdown文件
 
-###### Table of Content
-
 这里使用的的是 remark 来解析
