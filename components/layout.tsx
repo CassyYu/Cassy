@@ -32,7 +32,7 @@ export default function Layout({ children, siteTitle, className }: any) {
 			</Head>
 			<header className="flex fixed top-0 h-12 w-screen items-center justify-between shadow-lg font-mono font-semibold tracking-wider text-gray-500 whitespace-nowrap bg-gray-100 z-50">
 				<div className="ml-4 sm:ml-8 hover:underline hover:text-gray-800">
-					<a className="cursor-pointer"><Link href="">SING IN</Link></a>
+					<a className="cursor-pointer">CassyYu</a>
 				</div>
 				<div className="flex items-center">
 					{nav.map(({ name, href }: any, idx: number) => (

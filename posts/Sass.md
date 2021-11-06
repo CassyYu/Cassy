@@ -1,10 +1,8 @@
 ---
-title: 'Sass'
+title: 'Sass学习笔记'
 date: '2021-10-19'
 tags: ['Sass']
 ---
-
-## Sass 学习笔记
 
 ###### Table of Content
 
